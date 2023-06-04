@@ -1,15 +1,27 @@
-// src/components/Home.js
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 
 const Home = () => {
+  useEffect(() => {
+    checkUser(); // Check if the user is signed in
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      await Auth.currentAuthenticatedUser();
+    } catch (error) {
+      // Redirect to the Cognito Hosted UI sign-in page
+      Auth.federatedSignIn();
+    }
+  };
+
   return (
     <Container fluid>
       <Row>
         <Col xs={3}>
           <ListGroup>
+            {/* List of actions */}
             <ListGroup.Item action>
               <Button variant="outline-primary" href="/upload">Upload Image</Button>
             </ListGroup.Item>
@@ -36,4 +48,4 @@ const Home = () => {
   );
 };
 
-export default withAuthenticator(Home);
+export default Home;
