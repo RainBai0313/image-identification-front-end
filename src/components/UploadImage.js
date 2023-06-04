@@ -47,7 +47,7 @@ const UploadImage = () => {
 
       const body = {
         body: base64Data,
-        uuid: currentUser.attributes.username,
+        uuid: currentUser.signInUserSession.idToken.payload.email,
         path: selectedImage.name   // adding the filename to the request body
       };
 
