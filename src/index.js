@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Amplify from 'aws-amplify';
-import config from './AmplifyConfig'; // Adjust this path to point to your AmplifyConfig.js file
+import * as Amplify from 'aws-amplify';
+import config from './config/AmplifyConfig';
 
 Amplify.configure(config);
 
