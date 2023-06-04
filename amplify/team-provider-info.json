@@ -1,4 +1,27 @@
 {
+  "master": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-fit5225app-master-190425-authRole",
+      "UnauthRoleArn": "arn:aws:iam::458800918420:role/amplify-fit5225app-master-190425-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::458800918420:role/amplify-fit5225app-master-190425-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-fit5225app-master-190425-deployment",
+      "UnauthRoleName": "amplify-fit5225app-master-190425-unauthRole",
+      "StackName": "amplify-fit5225app-master-190425",
+      "StackId": "arn:aws:cloudformation:us-east-1:458800918420:stack/amplify-fit5225app-master-190425/9f993bc0-030a-11ee-8cb1-121c8a3868c5",
+      "AmplifyAppId": "d3v8lm8mc5ojl3"
+    },
+    "categories": {
+      "auth": {
+        "group6app": {
+          "nativeClientId": "7e8ho0ofisu83pbmcm4ivsudot",
+          "userPoolId": "us-east-1_9tVQ8XxK6",
+          "userPoolName": "A2Group6UserPool",
+          "webClientId": "7e8ho0ofisu83pbmcm4ivsudot"
+        }
+      }
+    }
+  },
   "staging": {
     "awscloudformation": {
       "AuthRoleName": "amplify-amplifyd87355dd58a94-staging-174522-authRole",

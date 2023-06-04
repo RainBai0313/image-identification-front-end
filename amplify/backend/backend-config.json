@@ -1,35 +1,43 @@
 {
-  "auth": {},
+  "auth": {
+    "group6app": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
   "parameters": {
-    "AMPLIFY_auth_fit5225app_nativeClientId": {
+    "AMPLIFY_auth_group6app_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "fit5225app"
+          "resourceName": "group6app"
         }
       ]
     },
-    "AMPLIFY_auth_fit5225app_userPoolId": {
+    "AMPLIFY_auth_group6app_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "fit5225app"
+          "resourceName": "group6app"
         }
       ]
     },
-    "AMPLIFY_auth_fit5225app_userPoolName": {
+    "AMPLIFY_auth_group6app_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "fit5225app"
+          "resourceName": "group6app"
         }
       ]
     },
-    "AMPLIFY_auth_fit5225app_webClientId": {
+    "AMPLIFY_auth_group6app_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "fit5225app"
+          "resourceName": "group6app"
         }
       ]
     }
