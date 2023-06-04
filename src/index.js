@@ -13,7 +13,7 @@ Amplify.configure({
         userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
         oauth: {
             domain: 'fit5225group6.auth.us-east-1.amazoncognito.com',
-            scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
+            scope: ['phone', 'email', 'openid'],
             redirectSignIn: 'https://master.d3by4gyb688s57.amplifyapp.com/',
             redirectSignOut: 'http://localhost:3000/',
             responseType: 'code'   // or 'token', note that REFRESH token will only be generated when the responseType is code
