@@ -25,7 +25,7 @@ const Home = () => {
         window.location.hash = '';
       } else {
         // Redirect to the Cognito Hosted UI sign-in page
-        window.location.href = 'https://your-cognito-domain.auth.us-east-1.amazoncognito.com/login?client_id=your-client-id&response_type=token&scope=openid+profile&redirect_uri=your-redirect-uri';
+        window.location.href = 'https://fit5225group6.auth.us-east-1.amazoncognito.com/login?client_id=7e8ho0ofisu83pbmcm4ivsudot&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fmaster.d1bqd04ay5ovd9.amplifyapp.com%2F';
       }
     } catch (error) {
       console.error('Error:', error);
