@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 const UploadImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     checkUser();
