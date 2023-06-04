@@ -5,13 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Amplify } from 'aws-amplify';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 
 Amplify.configure({
   Auth: {
       region: 'us-east-1',
-      userPoolId: 'us-east-1_gLpfmsGJq',
-      userPoolWebClientId: '1tajgrc3h7377vevm7bf9cm7o2',
-      authenticationFlowType: 'CUSTOM_AUTH',
+      userPoolId: 'us-east-1_9tVQ8XxK6',
+      userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
   },
 });
 
@@ -19,8 +19,11 @@ Amplify.configure({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <AmplifyAuthenticator>
+      <App />
+    </AmplifyAuthenticator>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
