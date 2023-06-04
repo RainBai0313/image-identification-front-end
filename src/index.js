@@ -9,7 +9,7 @@ import {Amplify, Auth} from 'aws-amplify';
 Amplify.configure({
     Auth: {
         region: 'us-east-1',
-        userPoolId: '	us-east-1_9tVQ8XxK6',
+        userPoolId: 'us-east-1_9tVQ8XxK6',
         userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
         oauth: {
             domain: 'https://fit5225group6.auth.us-east-1.amazoncognito.com',
