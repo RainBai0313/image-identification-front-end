@@ -13,12 +13,8 @@
     },
     "categories": {
       "auth": {
-        "group6app": {
-          "nativeClientId": "7e8ho0ofisu83pbmcm4ivsudot",
-          "userPoolId": "us-east-1_9tVQ8XxK6",
-          "userPoolName": "A2Group6UserPool",
-          "webClientId": "7e8ho0ofisu83pbmcm4ivsudot"
-        }
+        "group6appe6cb69a8e6cb69a8": {},
+        "userPoolGroups": {}
       }
     }
   },

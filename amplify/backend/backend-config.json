@@ -1,45 +1,47 @@
 {
   "auth": {
-    "group6app": {
+    "group6appe6cb69a8e6cb69a8": {
       "customAuth": false,
       "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "FAMILY_NAME",
+          "GIVEN_NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_auth_group6app_nativeClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "group6app"
-        }
-      ]
+      "service": "Cognito"
     },
-    "AMPLIFY_auth_group6app_userPoolId": {
-      "usedBy": [
+    "userPoolGroups": {
+      "dependsOn": [
         {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ],
           "category": "auth",
-          "resourceName": "group6app"
+          "resourceName": "group6appe6cb69a8e6cb69a8"
         }
-      ]
-    },
-    "AMPLIFY_auth_group6app_userPoolName": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "group6app"
-        }
-      ]
-    },
-    "AMPLIFY_auth_group6app_webClientId": {
-      "usedBy": [
-        {
-          "category": "auth",
-          "resourceName": "group6app"
-        }
-      ]
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
     }
   }
 }
