@@ -9,10 +9,10 @@ const Home = () => {
 
   const checkUser = async () => {
     try {
-      await Auth.currentAuthenticatedUser();
+      await Auth.currentSession();
     } catch (error) {
       // Redirect to the Cognito Hosted UI sign-in page
-      Auth.federatedSignIn();
+      window.location.href = 'https://fit5225group6.auth.us-east-1.amazoncognito.com/login?client_id=7e8ho0ofisu83pbmcm4ivsudot&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fmaster.d1bqd04ay5ovd9.amplifyapp.com%2F';
     }
   };
 
