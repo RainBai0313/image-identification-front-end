@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
-import { withAuthenticator, AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 
 const Home = () => {
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      // getCurrentUser() will return the current authenticated user
+      const user = await Auth.currentAuthenticatedUser();
+      console.log('User: ', user);
+    } catch (error) {
+      console.log('Error: ', error);
+      // signIn() will redirect to the Cognito Hosted UI for login
+      Auth.federatedSignIn();
+    }
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -35,4 +51,4 @@ const Home = () => {
   );
 };
 
-export default withAuthenticator(Home);
+export default Home;

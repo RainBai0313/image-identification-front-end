@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Amplify } from 'aws-amplify';
-import { withAuthenticator, AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import Amplify from 'aws-amplify';
 
 Amplify.configure({
-  Auth: {
-      region: 'us-east-1',
-      userPoolId: 'us-east-1_9tVQ8XxK6',
-      userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
-  },
+    Auth: {
+        region: 'us-east-1',
+        userPoolId: '	us-east-1_9tVQ8XxK6',
+        userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
+        oauth: {
+            domain: 'https://fit5225group6.auth.us-east-1.amazoncognito.com',
+            scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
+            redirectSignIn: 'https://master.d3v8lm8mc5ojl3.amplifyapp.com/',
+            redirectSignOut: 'http://localhost:3000/',
+            responseType: 'code'   // or 'token', note that REFRESH token will only be generated when the responseType is code
+        }
+    }
 });
 
 
