@@ -9,11 +9,35 @@ const Home = () => {
 
   const checkUser = async () => {
     try {
-      await Auth.currentSession();
+      const urlParams = new URLSearchParams(window.location.hash.substring(1));
+      const idToken = urlParams.get('id_token');
+      const accessToken = urlParams.get('access_token');
+      
+      if (idToken && accessToken) {
+        // Get the user ID from the ID token
+        const decodedIdToken = parseJwt(idToken);
+        const userId = decodedIdToken.sub;
+        console.log('User ID:', userId);
+        
+        // Do something with the user ID
+        
+        // Remove the tokens from the URL
+        window.location.hash = '';
+      } else {
+        // Redirect to the Cognito Hosted UI sign-in page
+        window.location.href = 'https://your-cognito-domain.auth.us-east-1.amazoncognito.com/login?client_id=your-client-id&response_type=token&scope=openid+profile&redirect_uri=your-redirect-uri';
+      }
     } catch (error) {
-      // Redirect to the Cognito Hosted UI sign-in page
-      window.location.href = 'https://fit5225group6.auth.us-east-1.amazoncognito.com/login?client_id=7e8ho0ofisu83pbmcm4ivsudot&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fmaster.d1bqd04ay5ovd9.amplifyapp.com%2F';
+      console.error('Error:', error);
     }
+  };
+
+  const parseJwt = (token) => {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+
+    return JSON.parse(jsonPayload);
   };
 
   return (
