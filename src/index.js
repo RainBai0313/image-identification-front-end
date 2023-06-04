@@ -12,7 +12,7 @@ Amplify.configure({
         userPoolId: 'us-east-1_9tVQ8XxK6',
         userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
         oauth: {
-            domain: 'https://fit5225group6.auth.us-east-1.amazoncognito.com',
+            domain: 'fit5225group6.auth.us-east-1.amazoncognito.com',
             scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
             redirectSignIn: 'https://master.d3v8lm8mc5ojl3.amplifyapp.com/',
             redirectSignOut: 'http://localhost:3000/',
