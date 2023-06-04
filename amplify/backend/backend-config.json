@@ -1,13 +1,5 @@
 {
-  "auth": {
-    "fit5225app": {
-      "customAuth": false,
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
-    }
-  },
+  "auth": {},
   "parameters": {
     "AMPLIFY_auth_fit5225app_nativeClientId": {
       "usedBy": [
