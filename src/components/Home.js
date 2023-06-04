@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 const Home = () => {
   return (
@@ -35,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withAuthenticator(Home);
