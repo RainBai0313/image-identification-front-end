@@ -43,6 +43,9 @@ const Home = () => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
+        <Col className={styles.bar}>
+          <h2  className={styles.title}>Home Page</h2>
+        </Col>
         <Col className={styles.welcome}>
           <h2>Welcome to the Dashboard</h2>
           <p>Select an action from the left to get started.</p>
