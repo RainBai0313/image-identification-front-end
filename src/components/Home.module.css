@@ -71,3 +71,36 @@
     color: #f8f9fa;
     font-family: 'Roboto', sans-serif;
 }
+
+.imagePreviewContainer {
+    width: 300px;  /* adjust as needed */
+    height: 300px; /* adjust as needed */
+    overflow: hidden;
+  }
+  
+  .imagePreview {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .inputContainer {
+    width: 200px;  /* adjust this value as needed */
+    /* add more styling as needed */
+  }
+  
+  .imagePreviewContainer {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .imagePreview {
+    max-width: 100%;
+    height: auto;
+  }

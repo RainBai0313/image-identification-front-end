@@ -6,6 +6,7 @@ import styles from './UploadImage.module.css';
 
 const UploadImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,12 @@ const UploadImage = () => {
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectedImageUrl(reader.result);
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const handleUpload = async () => {
@@ -48,8 +55,8 @@ const UploadImage = () => {
 
       const body = {
         body: base64Data,
-        uuid: currentUser.signInUserSession.idToken.payload.email,
-        path: selectedImage.name   // adding the filename to the request body
+        uuid: currentUser.signInUserSession.idToken.payload.sub,
+        path: selectedImage.name.split('.').slice(0, -1).join('.')   // adding the filename to the request body
       };
 
       try {
@@ -66,10 +73,10 @@ const UploadImage = () => {
   };
 
   return (
-      <div className={styles.uploadImageContainer}>
-        <Row>
+    <div className={styles.uploadImageContainer}>
+      <Row>
         <Col xs={3}>
-          <ListGroup  className={styles.sidebar}>
+          <ListGroup className={styles.sidebar}>
             {/* List of actions */}
             <ListGroup.Item>
               <Button className={styles.buttonSize} variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
@@ -88,24 +95,37 @@ const UploadImage = () => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-          <Col className={styles.bar}>
-            <h2  className={styles.title}>Upload Image</h2>
-          </Col>
-        </Row>
-        <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className={styles.inputFile}
-        />
-        <Button
-            onClick={handleUpload}
-            disabled={uploading}
-            className={styles.uploadButton}
-        >
-          {uploading ? 'Uploading...' : 'Upload'}
-        </Button>
-      </div>
+        <Col className={styles.bar}>
+          <h2 className={styles.title}>Upload Image</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <div className={styles.inputContainer}>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className={styles.inputFile}
+            />
+            <Button
+              onClick={handleUpload}
+              disabled={uploading}
+              className={styles.uploadButton}
+            >
+              {uploading ? 'Uploading...' : 'Upload'}
+            </Button>
+          </div>
+        </Col>
+        <Col>
+          <div className={styles.imagePreviewContainer}>
+            {selectedImageUrl && (
+              <img src={selectedImageUrl} alt="Selected" className={styles.imagePreview} />
+            )}
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
