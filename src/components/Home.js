@@ -30,7 +30,7 @@ const Home = () => {
               <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search_by_tag">Search Image By Tag</Button>
             </ListGroup.Item>
             <ListGroup.Item>
               <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>

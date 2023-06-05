@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Col, Form, ListGroup} from 'react-bootstrap';
+import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './SearchImage.module.css';
@@ -44,7 +44,7 @@ const SearchImage = () => {
     try {
       const response = await axios.post('https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/searche_by_tags', body, config);
       const imageUrls = response.data.body;
-    setResponse(imageUrls);
+      setResponse(imageUrls);
     } catch (error) {
       console.error('Error submitting tags: ', error);
     }
@@ -64,11 +64,17 @@ const SearchImage = () => {
     setTagFields([...tagFields, { tag: '', count: '' }]);
   };
 
+  const handleRemoveFields = (index) => {
+    const values  = [...tagFields];
+    values.splice(index, 1);
+    setTagFields(values);
+  };
+
   return (
     <div className={styles.searchImageContainer}>
       <Form onSubmit={handleSubmit}>
         {tagFields.map((field, index) => (
-          <div key={`${field}-${index}`}>
+          <Row key={`${field}-${index}`}>
             <Form.Group as={Col}>
               <Form.Label>Tag</Form.Label>
               <Form.Control
@@ -89,21 +95,24 @@ const SearchImage = () => {
                 onChange={event => handleInputChange(index, event)}
               />
             </Form.Group>
-          </div>
+            <Form.Group as={Col}>
+              <Button variant="danger" onClick={() => handleRemoveFields(index)}>Remove</Button>
+            </Form.Group>
+          </Row>
         ))}
         <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
         <Button variant="success" type="submit" className={styles.submitButton}>Submit</Button>
       </Form>
       {
-      response && 
-      (Array.isArray(response) ? 
-        response.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`Image ${index}`} />
-        )) 
-        : 
-        <p>{response}</p>
-      )
-    }
+        response && 
+        (Array.isArray(response) ? 
+          response.map((imageUrl, index) => (
+            <img key={index} src={imageUrl} alt={`Image ${index}`} />
+          )) 
+          : 
+          <p>{response}</p>
+        )
+      }
     </div>
   );
 };
