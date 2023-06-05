@@ -27,19 +27,19 @@ const Home = () => {
           <ListGroup  className={styles.sidebar}>
             {/* List of actions */}
             <ListGroup.Item>
-              <Button variant="outline-primary" href="/upload">Upload Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button variant="outline-primary" href="/search-image">Search Image By Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button variant="outline-primary" href="/edit-tags">Edit Tags</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/edit-tags">Edit Tags</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button variant="outline-primary" href="/delete-image">Delete Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
             </ListGroup.Item>
           </ListGroup>
         </Col>

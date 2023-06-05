@@ -31,6 +31,11 @@
     width: 100%;
 }
 
+.buttonSize {
+    width: 100%;
+    min-width: 200px;
+}
+
 .welcome {
     display: flex;
     flex-direction: column;
