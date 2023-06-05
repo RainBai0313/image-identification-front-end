@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col, Button, ListGroup } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
+import styles from './Home.module.css';
 
 const Home = () => {
   useEffect(() => {
@@ -20,29 +21,29 @@ const Home = () => {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className={styles.container}>
       <Row>
-        <Col xs={3}>
+        <Col xs={3} className={styles.sidebar}>
           <ListGroup>
             {/* List of actions */}
-            <ListGroup.Item action>
+            <ListGroup.Item>
               <Button variant="outline-primary" href="/upload">Upload Image</Button>
             </ListGroup.Item>
-            <ListGroup.Item action>
+            <ListGroup.Item>
               <Button variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
             </ListGroup.Item>
-            <ListGroup.Item action>
+            <ListGroup.Item>
               <Button variant="outline-primary" href="/search-image">Search Image By Image</Button>
             </ListGroup.Item>
-            <ListGroup.Item action>
+            <ListGroup.Item>
               <Button variant="outline-primary" href="/edit-tags">Edit Tags</Button>
             </ListGroup.Item>
-            <ListGroup.Item action>
+            <ListGroup.Item>
               <Button variant="outline-primary" href="/delete-image">Delete Image</Button>
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col>
+        <Col className={styles.welcome}>
           <h2>Welcome to the Dashboard</h2>
           <p>Select an action from the left to get started.</p>
         </Col>
