@@ -23,8 +23,8 @@ const Home = () => {
   return (
     <Container fluid className={styles.container}>
       <Row>
-        <Col xs={3} className={styles.sidebar}>
-          <ListGroup>
+        <Col xs={3}>
+          <ListGroup  className={styles.sidebar}>
             {/* List of actions */}
             <ListGroup.Item>
               <Button variant="outline-primary" href="/upload">Upload Image</Button>
