@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
+import styles from './UploadImage.module.css';
 
 const UploadImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -65,12 +66,21 @@ const UploadImage = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      <Button onClick={handleUpload} disabled={uploading}>
-        {uploading ? 'Uploading...' : 'Upload'}
-      </Button>
-    </div>
+      <div className={styles.uploadImageContainer}>
+        <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className={styles.inputFile}
+        />
+        <Button
+            onClick={handleUpload}
+            disabled={uploading}
+            className={styles.uploadButton}
+        >
+          {uploading ? 'Uploading...' : 'Upload'}
+        </Button>
+      </div>
   );
 };
 
