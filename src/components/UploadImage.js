@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import {Button, Col, ListGroup} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './UploadImage.module.css';
@@ -67,6 +67,26 @@ const UploadImage = () => {
 
   return (
       <div className={styles.uploadImageContainer}>
+        <Col xs={3}>
+          <ListGroup  className={styles.sidebar}>
+            {/* List of actions */}
+            <ListGroup.Item>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/edit-tags">Edit Tags</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
         <input
             type="file"
             accept="image/*"

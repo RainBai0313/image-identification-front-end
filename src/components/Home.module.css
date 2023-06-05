@@ -13,8 +13,9 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     min-width: 220px;
+    min-height: 100vh;
     position: relative;
-    left: -70px;
+    left: -300px;
 }
 
 .sidebar .list-group-item {
@@ -48,6 +49,8 @@
     align-items: center;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    position: relative;
+    top: -300px;
 }
 
 .welcome h2 {
