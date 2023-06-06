@@ -21,15 +21,15 @@ const Home = () => {
 
   const checkUser = async () => {
     try {
-      // getCurrentUser() will return the current authenticated user
-      const user = await Auth.currentAuthenticatedUser();
+      const session = await Auth.currentSession();
+      const user = session.getIdToken().payload;
       console.log('User: ', user);
     } catch (error) {
       console.log('Error: ', error);
-      // signIn() will redirect to the Cognito Hosted UI for login
       Auth.federatedSignIn();
     }
   };
+  
 
   return (
     <Container fluid className={styles.container}>

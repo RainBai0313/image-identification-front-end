@@ -13,10 +13,12 @@ Amplify.configure({
         userPoolWebClientId: '7e8ho0ofisu83pbmcm4ivsudot',
         oauth: {
             domain: 'fit5225group6.auth.us-east-1.amazoncognito.com',
-            scope: ['phone', 'email', 'openid'],
+            scope: ['phone', 'email', 'openid',  'profile', 'aws.cognito.signin.user.admin'],
             redirectSignIn: 'http://localhost:3000/',
             redirectSignOut: 'http://localhost:3000/',
-            responseType: 'code'   // or 'token', note that REFRESH token will only be generated when the responseType is code
+            responseType: 'code',   // or 'token', note that REFRESH token will only be generated when the responseType is code
+            provider: 'Google',
+            client_id: '1075313455165-np290cahbbjibp7b3eeo8bofnp26mp9e.apps.googleusercontent.com',
         }
     }
 });
