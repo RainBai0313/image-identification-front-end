@@ -39,7 +39,7 @@ const Home = () => {
               <Button className={styles.buttonSize} variant="outline-primary" href="/edit_tags">Edit Tags</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/delete_image">Delete Image</Button>
             </ListGroup.Item>
           </ListGroup>
         </Col>

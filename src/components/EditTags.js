@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Col, ListGroup, Row, Table } from 'react-bootstrap';
+import { Button, Col, ListGroup, Modal, Row, Table } from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './EditTags.module.css'; // create a new CSS module for this page
@@ -7,6 +7,8 @@ import styles from './EditTags.module.css'; // create a new CSS module for this 
 const EditTags = () => {
   const [images, setImages] = useState([]);
   const [inputs, setInputs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   
   useEffect(() => {
     checkUser();
@@ -63,46 +65,56 @@ const EditTags = () => {
   };
 
   const handleSubmit = async (index) => {
-    // Convert the option to a number.
-    const type = inputs[index].option === 'add' ? 1 : 0;
-  
-    // Construct the tags object.
-    const tags = [{
-      tag: inputs[index].tag,
-      count: parseInt(inputs[index].count, 10),
-    }];
-  
-    try {
-      const currentUser = await Auth.currentAuthenticatedUser();
-      const token = currentUser.signInUserSession.idToken.jwtToken;
-  
-      const config = {
-        headers: {
-          Authorization: token,
-        },
-      };
+    const confirmDelete = window.confirm('Are you sure you want to edit the tag of this image?');
 
-      // Construct the request body.
-      const body = {
-        url: images[index].url,
-        type,
-        tags,
-        uuid: currentUser.signInUserSession.idToken.payload.sub,
-      };
-  
-      const response = await axios.post('https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/edit_tags', body, config);
-  
-      if (response.status === 200) {
-        console.log('Success:', response.data);
-  
-        // Refresh the table by calling getAllImages.
-        getAllImages();
-      } else {
-        console.error('Error:', response);
+    if (confirmDelete) {
+      setLoading(true);
+      // Convert the option to a number.
+      const type = inputs[index].option === 'add' ? 1 : 0;
+    
+      // Construct the tags object.
+      const tags = [{
+        tag: inputs[index].tag,
+        count: parseInt(inputs[index].count, 10),
+      }];
+    
+      try {
+        const currentUser = await Auth.currentAuthenticatedUser();
+        const token = currentUser.signInUserSession.idToken.jwtToken;
+    
+        const config = {
+          headers: {
+            Authorization: token,
+          },
+        };
+
+        // Construct the request body.
+        const body = {
+          url: images[index].url,
+          type,
+          tags,
+          uuid: currentUser.signInUserSession.idToken.payload.sub,
+        };
+    
+        const response = await axios.post('https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/edit_tags', body, config);
+    
+        if (response.status === 200) {
+          console.log('Success:', response.data);
+          setShowSuccessModal(true);
+    
+          // Refresh the table by calling getAllImages.
+          getAllImages();
+        } else {
+          console.error('Error:', response);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
   };
   
 
@@ -152,15 +164,15 @@ const EditTags = () => {
                     images.map((image, index) => (
                         <tr key={index}>
                             <td>
-                              <a 
-                                href={image.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                title={image.url}  // show full URL on hover
-                                className={styles.tableLink}  // add this new style
-                              >
-                                {image.url}
-                              </a>
+                            <a
+                                href={image.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={image.url}
+                                className={styles.tableLink}
+                                >
+                                <img src={image.url} alt={`Image ${index}`} className={styles.image} />
+                            </a>
                             </td>
                             <td>{image.tags}</td>
                             <td>
@@ -176,7 +188,13 @@ const EditTags = () => {
                               <input type="number" value={inputs[index].count} onChange={handleInputChange(index, 'count')} />
                             </td>
                             <td>
-                              <Button variant="outline-primary" onClick={() => handleSubmit(index)}>Submit</Button>
+                            <Button
+                              variant="outline-primary"
+                              onClick={() => handleSubmit(index)}
+                              disabled={loading} // Disable the button when loading
+                            >
+                              {loading ? 'Updating....' : 'Update'}
+                            </Button>
                             </td>
                         </tr>
                     ))
@@ -186,6 +204,19 @@ const EditTags = () => {
           </div>
         </Col>
       </Row>
+      <Modal show={showSuccessModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tags Updated</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>The tags of this image has been updated successfully</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

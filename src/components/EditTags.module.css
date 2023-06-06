@@ -120,3 +120,12 @@
     max-width: 200px;
     display: block;
 }
+
+.image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-height: 100px; /* Adjust the maximum height of the image */
+    object-fit: contain;
+  }
