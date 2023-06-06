@@ -125,16 +125,16 @@ const EditTags = () => {
           <ListGroup className={styles.sidebar}>
             {/* List of actions */}
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/search-tag">Search Image By Tag</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search_by_tag">Search Image By Tag</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/edit-tags">Edit Tags</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/search_by_images">Search Image By Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
+              <Button className={styles.buttonSize} variant="outline-primary" href="/delete_image">Delete Image</Button>
             </ListGroup.Item>
             <ListGroup.Item>
               <Button className={styles.buttonSize} variant="outline-primary" href="/">Return Home</Button>
