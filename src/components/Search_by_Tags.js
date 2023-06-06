@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Col, Form, ListGroup} from 'react-bootstrap';
+import {Button, Col, Container, Form, ListGroup} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './SearchImage.module.css';
@@ -65,34 +65,59 @@ const SearchImage = () => {
   };
 
   return (
-    <div className={styles.searchImageContainer}>
-      <Form onSubmit={handleSubmit}>
+      <Container fluid className={styles.container}>
+      <Col xs={3}>
+        <ListGroup  className={styles.sidebar}>
+          {/* List of actions */}
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/edit-tags">Edit Tags</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/">Return Home</Button>
+          </ListGroup.Item>
+        </ListGroup>
+      </Col>
+      <Col className={styles.bar}>
+        <h2  className={styles.title}>Search by Tag</h2>
+      </Col>
+      <Form onSubmit={handleSubmit} className={styles.formContainer}>
         {tagFields.map((field, index) => (
-          <div key={`${field}-${index}`}>
-            <Form.Group as={Col}>
-              <Form.Label>Tag</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter tag"
-                name="tag"
-                value={field.tag}
-                onChange={event => handleInputChange(index, event)}
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>Count</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter count"
-                name="count"
-                value={field.count}
-                onChange={event => handleInputChange(index, event)}
-              />
-            </Form.Group>
-          </div>
+            <div key={`${field}-${index}`} className={styles.formRow}>
+              <Form.Group as={Col}>
+                <Form.Label>Tag</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Enter tag"
+                    name="tag"
+                    value={field.tag}
+                    onChange={event => handleInputChange(index, event)}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Count</Form.Label>
+                <Form.Control
+                    type="number"
+                    placeholder="Enter count"
+                    name="count"
+                    value={field.count}
+                    onChange={event => handleInputChange(index, event)}
+                />
+              </Form.Group>
+            </div>
         ))}
-        <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
-        <Button variant="success" type="submit" className={styles.submitButton}>Submit</Button>
+        <div className={styles.buttons}>
+          <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
+          <Button variant="success" type="submit">Submit</Button>
+        </div>
       </Form>
       {
       response && 
@@ -104,7 +129,7 @@ const SearchImage = () => {
         <p>{response}</p>
       )
     }
-    </div>
+      </Container>
   );
 };
 
