@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Col, Form, ListGroup} from 'react-bootstrap';
+import {Button, Col, Container, Form, ListGroup} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './SearchImage.module.css';
@@ -44,7 +44,7 @@ const SearchImage = () => {
     try {
       const response = await axios.post('https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/searche_by_tags', body, config);
       const imageUrls = response.data.body;
-      setResponse(imageUrls);
+    setResponse(imageUrls);
     } catch (error) {
       console.error('Error submitting tags: ', error);
     }
@@ -62,12 +62,6 @@ const SearchImage = () => {
 
   const handleAddFields = () => {
     setTagFields([...tagFields, { tag: '', count: '' }]);
-  };
-
-  const handleRemoveFields = (index) => {
-    const values  = [...tagFields];
-    values.splice(index, 1);
-    setTagFields(values);
   };
 
   return (
@@ -97,28 +91,28 @@ const SearchImage = () => {
       </Col>
       <Form onSubmit={handleSubmit} className={styles.formContainer}>
         {tagFields.map((field, index) => (
-          <div key={`${field}-${index}`}>
-            <Form.Group as={Col}>
-              <Form.Label>Tag</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter tag"
-                name="tag"
-                value={field.tag}
-                onChange={event => handleInputChange(index, event)}
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>Count</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter count"
-                name="count"
-                value={field.count}
-                onChange={event => handleInputChange(index, event)}
-              />
-            </Form.Group>
-          </div>
+            <div key={`${field}-${index}`} className={styles.formRow}>
+              <Form.Group as={Col}>
+                <Form.Label>Tag</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Enter tag"
+                    name="tag"
+                    value={field.tag}
+                    onChange={event => handleInputChange(index, event)}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Count</Form.Label>
+                <Form.Control
+                    type="number"
+                    placeholder="Enter count"
+                    name="count"
+                    value={field.count}
+                    onChange={event => handleInputChange(index, event)}
+                />
+              </Form.Group>
+            </div>
         ))}
         <div className={styles.buttons}>
           <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
@@ -135,7 +129,7 @@ const SearchImage = () => {
         <p>{response}</p>
       )
     }
-    </div>
+      </Container>
   );
 };
 
