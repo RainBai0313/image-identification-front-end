@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Col, Container, Form, ListGroup} from 'react-bootstrap';
+import {Button, Col, Container, Form, ListGroup, Table} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './SearchImage.module.css';
@@ -120,15 +120,23 @@ const SearchImage = () => {
         </div>
       </Form>
       {
-      response && 
-      (Array.isArray(response) ? 
-        response.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`Image ${index}`} />
-        )) 
-        : 
-        <p>{response}</p>
-      )
-    }
+        response && 
+        (Array.isArray(response) ? 
+          <Table bordered hover>
+            <tbody>
+              {response.map((imageUrl, index) => (
+                <tr key={index}>
+                  <td>
+                    <img style={{width: "100%"}} src={imageUrl} alt={`Image ${index}`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          : 
+          <p>{response}</p>
+        )
+      }
       </Container>
   );
 };
