@@ -8,6 +8,17 @@ const Home = () => {
     checkUser();
   }, []);
 
+  const handleSignOut = async () => {
+    const confirmSignOut = window.confirm('Are you sure you want to sign out?');
+    if (confirmSignOut) {
+      try {
+        await Auth.signOut();
+      } catch (error) {
+        console.log('Error signing out: ', error);
+      }
+    }
+  };
+
   const checkUser = async () => {
     try {
       // getCurrentUser() will return the current authenticated user
@@ -40,6 +51,9 @@ const Home = () => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button className={styles.buttonSize} variant="outline-primary" href="/delete_image">Delete Image</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button variant="outline-danger" onClick={handleSignOut}>Sign Out</Button>
             </ListGroup.Item>
           </ListGroup>
         </Col>

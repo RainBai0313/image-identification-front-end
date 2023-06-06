@@ -14,6 +14,17 @@ const EditTags = () => {
     checkUser();
     getAllImages();
   }, []);
+
+  const handleSignOut = async () => {
+    const confirmSignOut = window.confirm('Are you sure you want to sign out?');
+    if (confirmSignOut) {
+      try {
+        await Auth.signOut();
+      } catch (error) {
+        console.log('Error signing out: ', error);
+      }
+    }
+  };
   
   const checkUser = async () => {
     try {
@@ -138,6 +149,9 @@ const EditTags = () => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button className={styles.buttonSize} variant="outline-primary" href="/">Return Home</Button>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button variant="outline-danger" onClick={handleSignOut}>Sign Out</Button>
             </ListGroup.Item>
           </ListGroup>
         </Col>
