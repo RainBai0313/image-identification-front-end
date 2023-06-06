@@ -1,0 +1,122 @@
+.container {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #d9e9fd 0%, #d3f0fa 100%);
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    min-width: 220px;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar .list-group-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    width: 100%;
+    min-width: 220px;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: #f0f2f5;
+}
+
+.sidebar .btn {
+    width: 100%;
+    min-width: 220px;
+}
+
+.buttonSize {
+    width: 100%;
+    min-width: 180px;
+}
+
+.bar {
+    background-color: royalblue;
+    position: fixed;
+    left: 220px;
+    top: 0;
+    height: 70px;
+    width: calc(100vw - 220px); /* Adjusted width to calculate viewport width minus sidebar width */
+}
+
+.title {
+    color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 10px;
+}
+
+.content {
+    position: relative;
+    left: 220px;
+    top: 70px;
+    width: calc(100% - 220px); /* Adjusted width to calculate 100% width minus sidebar width */
+    height: calc(100vh - 70px); /* Adjusted height to calculate viewport height minus top bar height */
+    overflow: auto;
+}
+
+.tableResponsive {
+    table-layout: fixed;
+    width: 90%;
+    max-width: 90%;
+    overflow-x: auto;
+}
+
+.tableResponsive table {
+    table-layout: fixed;
+}
+
+.tableResponsive td:nth-child(1), .tableResponsive th:nth-child(1) {
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tableResponsive td:nth-child(2), .tableResponsive th:nth-child(2) {
+    width: 15%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tableResponsive td:nth-child(3), .tableResponsive th:nth-child(3) {
+    width: 8%;
+}
+
+.tableResponsive td:nth-child(4), .tableResponsive th:nth-child(4) {
+    width: 15%;
+}
+
+.tableResponsive td:nth-child(5), .tableResponsive th:nth-child(5) {
+    width: 15%;
+}
+
+.tableResponsive td:nth-child(6), .tableResponsive th:nth-child(6) {
+    width: 15%;
+}
+
+.tableLink {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    display: block;
+}
