@@ -5,6 +5,7 @@ import UploadImage from './components/UploadImage';
 import SearchImage from './components/Search_by_Tags';
 import SearchImageByImage from './components/Search_by_Images';
 import EditTags from './components/EditTags';
+import DeleteImage from './components/DeleteImage';
 // import your other components...
 
 const AppRouter = () => (
@@ -15,6 +16,7 @@ const AppRouter = () => (
             <Route path="/search_by_tag" element={<SearchImage />} />
             <Route path="/search_by_images" element={<SearchImageByImage />} />
             <Route path="/edit_tags" element={<EditTags />} />
+            <Route path="/delete_image" element={<DeleteImage />} />
         </Routes>
     </Router>
 );
