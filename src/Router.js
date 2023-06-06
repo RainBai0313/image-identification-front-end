@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import UploadImage from './components/UploadImage';
 import SearchImage from './components/Search_by_Tags';
+import SearchImageByImage from './components/Search_by_Images';
 // import your other components...
 
 const AppRouter = () => (
@@ -11,6 +12,7 @@ const AppRouter = () => (
             <Route path="/" element={<Home />} />
             <Route path="/upload" element={<UploadImage />} />
             <Route path="/search_by_tag" element={<SearchImage />} />
+            <Route path="/search_by_images" element={<SearchImageByImage />} />
         </Routes>
     </Router>
 );

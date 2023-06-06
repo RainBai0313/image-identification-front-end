@@ -6,7 +6,6 @@ import styles from './UploadImage.module.css';
 
 const UploadImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -28,9 +27,6 @@ const UploadImage = () => {
     setSelectedImage(e.target.files[0]);
     
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setSelectedImageUrl(reader.result);
-    };
     reader.readAsDataURL(e.target.files[0]);
   };
 
@@ -115,13 +111,6 @@ const UploadImage = () => {
             >
               {uploading ? 'Uploading...' : 'Upload'}
             </Button>
-          </div>
-        </Col>
-        <Col>
-          <div className={styles.imagePreviewContainer}>
-            {selectedImageUrl && (
-              <img src={selectedImageUrl} alt="Selected" className={styles.imagePreview} />
-            )}
           </div>
         </Col>
       </Row>

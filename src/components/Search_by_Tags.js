@@ -64,6 +64,12 @@ const SearchImage = () => {
     setTagFields([...tagFields, { tag: '', count: '' }]);
   };
 
+  const handleRemoveFields = (index) => {
+    const values  = [...tagFields];
+    values.splice(index, 1);
+    setTagFields(values);
+  };
+
   return (
       <Container fluid className={styles.container}>
       <Col xs={3}>
@@ -112,6 +118,10 @@ const SearchImage = () => {
                     onChange={event => handleInputChange(index, event)}
                 />
               </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Remove Tag</Form.Label>
+                <Button variant="danger" onClick={() => handleRemoveFields(index)}>Remove</Button>
+              </Form.Group>
             </div>
         ))}
         <div className={styles.buttons}>
@@ -119,24 +129,27 @@ const SearchImage = () => {
           <Button variant="success" type="submit">Submit</Button>
         </div>
       </Form>
-      {
-        response && 
-        (Array.isArray(response) ? 
-          <Table bordered hover>
-            <tbody>
-              {response.map((imageUrl, index) => (
+      <Table bordered hover>
+        <tbody>
+          {
+            response && 
+            (Array.isArray(response) && response.length > 0 ? 
+              response.map((imageUrl, index) => (
                 <tr key={index}>
                   <td>
-                    <img style={{width: "100%"}} src={imageUrl} alt={`Image ${index}`} />
-                  </td>
+                    <a href={imageUrl} target="_blank" rel="noopener noreferrer">
+                      {imageUrl}
+                    </a></td>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
-          : 
-          <p>{response}</p>
-        )
-      }
+              ))
+              : 
+              <tr>
+                <td>No matching</td>
+              </tr>
+            )
+          }
+        </tbody>
+      </Table>
       </Container>
   );
 };
