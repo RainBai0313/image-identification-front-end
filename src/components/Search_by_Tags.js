@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Col, Form, ListGroup, Row } from 'react-bootstrap';
+import {Button, Col, Form, ListGroup} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './SearchImage.module.css';
@@ -71,10 +71,33 @@ const SearchImage = () => {
   };
 
   return (
-    <div className={styles.searchImageContainer}>
-      <Form onSubmit={handleSubmit}>
+      <Container fluid className={styles.container}>
+      <Col xs={3}>
+        <ListGroup  className={styles.sidebar}>
+          {/* List of actions */}
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/upload">Upload Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/search-image">Search Image By Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/edit-tags">Edit Tags</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/delete-image">Delete Image</Button>
+          </ListGroup.Item>
+          <ListGroup.Item>
+            <Button className={styles.buttonSize} variant="outline-primary" href="/">Return Home</Button>
+          </ListGroup.Item>
+        </ListGroup>
+      </Col>
+      <Col className={styles.bar}>
+        <h2  className={styles.title}>Search by Tag</h2>
+      </Col>
+      <Form onSubmit={handleSubmit} className={styles.formContainer}>
         {tagFields.map((field, index) => (
-          <Row key={`${field}-${index}`}>
+          <div key={`${field}-${index}`}>
             <Form.Group as={Col}>
               <Form.Label>Tag</Form.Label>
               <Form.Control
@@ -95,24 +118,23 @@ const SearchImage = () => {
                 onChange={event => handleInputChange(index, event)}
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Button variant="danger" onClick={() => handleRemoveFields(index)}>Remove</Button>
-            </Form.Group>
-          </Row>
+          </div>
         ))}
-        <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
-        <Button variant="success" type="submit" className={styles.submitButton}>Submit</Button>
+        <div className={styles.buttons}>
+          <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
+          <Button variant="success" type="submit">Submit</Button>
+        </div>
       </Form>
       {
-        response && 
-        (Array.isArray(response) ? 
-          response.map((imageUrl, index) => (
-            <img key={index} src={imageUrl} alt={`Image ${index}`} />
-          )) 
-          : 
-          <p>{response}</p>
-        )
-      }
+      response && 
+      (Array.isArray(response) ? 
+        response.map((imageUrl, index) => (
+          <img key={index} src={imageUrl} alt={`Image ${index}`} />
+        )) 
+        : 
+        <p>{response}</p>
+      )
+    }
     </div>
   );
 };
