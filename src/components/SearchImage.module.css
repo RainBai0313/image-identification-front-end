@@ -1,8 +1,9 @@
 .container {
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100vh;
     background: linear-gradient(135deg, #d9e9fd 0%, #d3f0fa 100%);
 }
 
@@ -61,23 +62,57 @@
 .formContainer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 100px;
-    position: relative;
-    top: -300px;
-    left: -100px;
-}
+  }
 
 .formRow {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.formRow .form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.formRow .form-group:last-child {
+  margin-right: 0;
+}
+
+.formRow .removeButton {
+  margin-left: 10px;
 }
 
 .buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     align-items: center;
+    margin-top: 10px;
+  }
+
+.removeButton {
+  margin-top: 30px;
 }
+.content {
+    position: relative;
+    left: 220px;
+    top: 70px;
+    width: calc(100% - 50px); /* Adjusted width to calculate 100% width minus sidebar width */
+    height: calc(100vh - 100px); /* Adjusted height to calculate viewport height minus top bar height */
+    overflow: auto;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    max-height: 150px; /* Adjust the maximum height of the image */
+    object-fit: contain;
+}
+
+
   

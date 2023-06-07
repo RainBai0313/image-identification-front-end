@@ -125,29 +125,25 @@ const SearchImageByImage = () => {
             {uploading ? 'Searching....' : 'Upload'}
           </Button>
           <p></p>
-          <Table bordered hover>
-            <tbody>
-              {response && Array.isArray(response) && response.length > 0 ? (
-                response.map((imageUrl, index) => (
-                  <tr key={index}>
-                    <td>
-                      <a  href={imageUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={imageUrl}
-                          className={styles.tableLink}>
-                        <img src={imageUrl} alt={`Image ${index}`} className={styles.image} />
-                      </a>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td>No matching images found</td>
+          <Table bordered hover className={styles.customTable}>
+          <tbody>
+            {response && Array.isArray(response) && response.length > 0 ? (
+              response.map((imageUrl, index) => (
+                <tr key={index}>
+                  <td>
+                    <a href={imageUrl} target="_blank" rel="noopener noreferrer" title={imageUrl} className={styles.tableLink}>
+                      <img src={imageUrl} alt={`Image ${index}`} className={styles.image} />
+                    </a>
+                  </td>
                 </tr>
-              )}
-            </tbody>
-          </Table>
+              ))
+            ) : (
+              <tr>
+                <td>No matching images found</td>
+              </tr>
+            )}
+          </tbody>
+        </Table>
         </Col>
       </Row>
     </div>
