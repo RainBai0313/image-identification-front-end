@@ -61,8 +61,12 @@ const Home = () => {
           <h2  className={styles.title}>Home Page</h2>
         </Col>
         <Col className={styles.welcome}>
-          <h2>Welcome to the Dashboard</h2>
-          <p>Select an action from the left to get started.</p>
+          <h2>CloudSnap: A Serverless Image Storage System with Tagging</h2>
+          <p>Our system is a cloud-based, serverless system that enables customers to upload their images to public cloud storage. The system has five main functions.
+
+By clicking on upload image, users can upload an image for the machine to perform object detection. Our system identifies the object categories in the image (people, tables, chairs, etc.) and tags the image with these identified categories. In addition, the user can SEARCH image by tag, SEARCH image by image, and also edit the tags of the image or delete the image. Users can select the features they need through the dashboard on the left.
+
+Privacy Warning: The image upload for object detection would be stored in our system. Please make sure not upload images with private information or images that you may not willing to be stored in our system.</p>
         </Col>
       </Row>
     </Container>

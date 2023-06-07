@@ -70,6 +70,7 @@ const UploadImage = () => {
       try {
         const response = await axios.post(url, body, config);
         console.log(response.data);
+        setShowSuccessModal(true);
       } catch (error) {
         console.error('Error uploading image: ', error);
       }
