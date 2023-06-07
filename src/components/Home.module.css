@@ -52,12 +52,16 @@
     font-family: 'Roboto', sans-serif;
     position: relative;
     top: -300px;
+    left: -150px;
 }
 
 .welcome h2 {
     margin-bottom: 20px;
+    left: 50px;
     font-family: 'Roboto', sans-serif;
 }
+
+
 
 .bar {
     background-color: royalblue;
