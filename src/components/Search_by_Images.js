@@ -111,47 +111,43 @@ const SearchImageByImage = () => {
           <h2 className={styles.title}>Search Image By Image</h2>
         </Col>
       </Row>
-      <Row>
+      <Row className={styles.content}>
         <Col>
-          <div className={styles.inputContainer}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className={styles.inputFile}
-            />
-            <Button
-              onClick={handleUpload}
-              disabled={uploading}
-              className={styles.uploadButton}
-            >
-              {uploading ? 'Searching....' : 'Upload'}
-            </Button>
-          </div>
-        </Col>
-        <Col>
-            <Table bordered hover>
-                <tbody>
-                {
-                    response && 
-                    (Array.isArray(response) && response.length > 0 ? 
-                    response.map((imageUrl, index) => (
-                        <tr key={index}>
-                            <td>
-                                <a href={imageUrl} target="_blank" rel="noopener noreferrer">
-                                    {imageUrl}
-                                </a>
-                            </td>
-                        </tr>
-                    ))
-                    : 
-                    <tr>
-                        <td>No matching images found</td>
-                    </tr>
-                    )
-                }
-                </tbody>
-            </Table>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <Button
+            onClick={handleUpload}
+            disabled={uploading}
+          >
+            {uploading ? 'Searching....' : 'Upload'}
+          </Button>
+          <p></p>
+          <Table bordered hover>
+            <tbody>
+              {response && Array.isArray(response) && response.length > 0 ? (
+                response.map((imageUrl, index) => (
+                  <tr key={index}>
+                    <td>
+                      <a  href={imageUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={imageUrl}
+                          className={styles.tableLink}>
+                        <img src={imageUrl} alt={`Image ${index}`} className={styles.image} />
+                      </a>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>No matching images found</td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
         </Col>
       </Row>
     </div>
