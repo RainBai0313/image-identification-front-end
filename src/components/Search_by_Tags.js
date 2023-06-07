@@ -7,6 +7,7 @@ import styles from './SearchImage.module.css';
 const SearchImage = () => {
   const [tagFields, setTagFields] = useState([{ tag: '', count: '' }]);
   const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -35,6 +36,7 @@ const SearchImage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     const currentUser = await Auth.currentAuthenticatedUser();
     const uuid = currentUser.signInUserSession.idToken.payload.sub;
@@ -59,6 +61,7 @@ const SearchImage = () => {
     } catch (error) {
       console.error('Error submitting tags: ', error);
     }
+    setLoading(false); // Set loading state to false
   };
 
   const handleInputChange = (index, event) => {
@@ -147,7 +150,9 @@ const SearchImage = () => {
           ))}
           <div className={styles.buttons}>
             <Button variant="primary" onClick={handleAddFields}>Add Tag</Button>
-            <Button variant="success" type="submit">Submit</Button>
+            <Button variant="success" type="submit" disabled={loading}>
+              {loading ? 'Searching...' : 'Submit'}
+            </Button>
           </div>
         </Form>
         <p></p>

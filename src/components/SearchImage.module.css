@@ -93,6 +93,10 @@
     margin-top: 10px;
   }
 
+  .buttons > * + * {
+    margin-left: 10px;
+  }
+
 .removeButton {
   margin-top: 30px;
 }
