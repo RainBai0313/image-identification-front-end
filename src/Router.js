@@ -6,6 +6,7 @@ import SearchImage from './components/Search_by_Tags';
 import SearchImageByImage from './components/Search_by_Images';
 import EditTags from './components/EditTags';
 import DeleteImage from './components/DeleteImage';
+
 // import your other components...
 
 const AppRouter = () => (

@@ -21,11 +21,11 @@ const Home = () => {
 
   const checkUser = async () => {
     try {
-      const session = await Auth.currentSession();
-      const user = session.getIdToken().payload;
+      const user = await Auth.currentAuthenticatedUser();
       console.log('User: ', user);
     } catch (error) {
       console.log('Error: ', error);
+      // Redirect to home if not logged in
       Auth.federatedSignIn();
     }
   };
