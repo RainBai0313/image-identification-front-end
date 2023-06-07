@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Col, ListGroup, Row} from 'react-bootstrap';
+import {Button, Col, ListGroup, Row, Modal} from 'react-bootstrap';
 import { Auth } from 'aws-amplify';
 import axios from 'axios';
 import styles from './UploadImage.module.css';
@@ -7,6 +7,7 @@ import styles from './UploadImage.module.css';
 const UploadImage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -75,8 +76,13 @@ const UploadImage = () => {
 
       setUploading(false);
     };
+    
 
     reader.readAsDataURL(selectedImage);
+  };
+
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
   };
 
   return (
@@ -128,6 +134,19 @@ const UploadImage = () => {
           </div>
         </Col>
       </Row>
+      <Modal show={showSuccessModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Image Uploaded</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Image has been uploaded successfully.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
