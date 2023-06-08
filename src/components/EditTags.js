@@ -189,7 +189,7 @@ const EditTags = () => {
                                 <img src={image.url} alt={`Image ${index}`} className={styles.image} />
                             </a>
                             </td>
-                            <td>{image.tags}</td>
+                            <td title={image.tags}>{image.tags}</td>
                             <td>
                             <select value={inputs[index].option} onChange={handleInputChange(index, 'option')}>
                               <option value="add">Add</option>

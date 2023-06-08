@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from './UploadImage.module.css';
 
 const UploadImage = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -36,51 +36,54 @@ const UploadImage = () => {
   };
 
   const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
-    
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
+    setSelectedImages(Array.from(e.target.files));  // We can select multiple files
   };
 
   const handleUpload = async () => {
     setUploading(true);
-
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-      const base64Data = reader.result.split(',')[1];
-
-      const currentUser = await Auth.currentAuthenticatedUser();
-      const token = currentUser.signInUserSession.idToken.jwtToken;
-
-      const config = {
-        headers: {
-          Authorization: token,
-        },
-      };
-
-      // Replace 'https://your-api-gateway-url' with your actual API Gateway URL
-      const url = 'https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/upload';
-
-      const body = {
-        body: base64Data,
-        uuid: currentUser.signInUserSession.idToken.payload.sub,
-        path: selectedImage.name.split('.').slice(0, -1).join('.')   // adding the filename to the request body
-      };
-
-      try {
-        const response = await axios.post(url, body, config);
-        console.log(response.data);
-        setShowSuccessModal(true);
-      } catch (error) {
-        console.error('Error uploading image: ', error);
-      }
-
-      setUploading(false);
+  
+    const currentUser = await Auth.currentAuthenticatedUser();
+    const token = currentUser.signInUserSession.idToken.jwtToken;
+  
+    const config = {
+      headers: {
+        Authorization: token,
+      },
     };
-    
-
-    reader.readAsDataURL(selectedImage);
+  
+    // Replace 'https://your-api-gateway-url' with your actual API Gateway URL
+    const url = 'https://ivaylef3bi.execute-api.us-east-1.amazonaws.com/dev/upload';
+  
+    for (let i = 0; i < selectedImages.length; i++) {
+      const selectedImage = selectedImages[i];
+  
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64Data = reader.result.split(',')[1];
+  
+        const body = {
+          body: base64Data,
+          uuid: currentUser.signInUserSession.idToken.payload.sub,
+          path: selectedImage.name.split('.').slice(0, -1).join('.')   // adding the filename to the request body
+        };
+  
+        try {
+          const response = await axios.post(url, body, config);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error uploading image: ', error);
+        }
+  
+        if (i === selectedImages.length - 1) { // Only show the success modal when all images are uploaded
+          setShowSuccessModal(true);
+          setUploading(false);
+        }
+      };
+  
+      reader.readAsDataURL(selectedImage);
+    }
   };
+  
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
@@ -124,6 +127,7 @@ const UploadImage = () => {
               accept="image/*"
               onChange={handleImageChange}
               className={styles.inputFile}
+              multiple
             />
             <Button
               onClick={handleUpload}

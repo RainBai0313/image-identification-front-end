@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from './SearchImage.module.css';
 
 const SearchImage = () => {
-  const [tagFields, setTagFields] = useState([{ tag: '', count: '' }]);
+  const [tagFields, setTagFields] = useState([{ tag: '', count: 1 }]);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -75,7 +75,7 @@ const SearchImage = () => {
   };
 
   const handleAddFields = () => {
-    setTagFields([...tagFields, { tag: '', count: '' }]);
+    setTagFields([...tagFields, { tag: '', count: 1 }]);
   };
 
   const handleRemoveFields = (index) => {
@@ -131,11 +131,12 @@ const SearchImage = () => {
               <Form.Group as={Col} className={styles.formGroup}>
                 <Form.Label>Count</Form.Label>
                 <Form.Control
-                  type="number"
-                  placeholder="Enter count"
-                  name="count"
-                  value={field.count}
-                  onChange={event => handleInputChange(index, event)}
+                   type="number"
+                   placeholder="Enter count"
+                   name="count"
+                   min="1"
+                   value={field.count || 1}
+                   onChange={event => handleInputChange(index, event)}
                 />
                 
               </Form.Group>
