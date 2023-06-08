@@ -14,7 +14,7 @@ Amplify.configure({
         oauth: {
             domain: 'fit5225group6.auth.us-east-1.amazoncognito.com',
             scope: ['phone', 'email', 'openid',  'profile', 'aws.cognito.signin.user.admin'],
-            redirectSignIn: 'https://master.d3by4gyb688s57.amplifyapp.com/oauth2/idpresponse',
+            redirectSignIn: 'https://master.d3by4gyb688s57.amplifyapp.com',
             redirectSignOut: 'https://master.d3by4gyb688s57.amplifyapp.com',
             responseType: 'code',   // or 'token', note that REFRESH token will only be generated when the responseType is code
             provider: 'Google',
