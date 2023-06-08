@@ -112,6 +112,7 @@ const EditTags = () => {
         if (response.status === 200) {
           console.log('Success:', response.data);
           setShowSuccessModal(true);
+          setLoading(false);
     
           // Refresh the table by calling getAllImages.
           getAllImages();
