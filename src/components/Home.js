@@ -21,6 +21,8 @@ const Home = () => {
 
   const checkUser = async () => {
     try {
+      const session = await Auth.currentSession();
+      console.log('session:', session);
       const user = await Auth.currentAuthenticatedUser();
       console.log('User: ', user);
     } catch (error) {
